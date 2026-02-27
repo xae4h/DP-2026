@@ -22,7 +22,7 @@ async function handleMessage(msg, bot) {
 
     if (text === '/start') {
         await bot.sendSticker(chatId, 'https://cdn2.combot.org/siba_oscar/webp/0xf09f918b.webp');
-        await bot.sendMessage(chatId, `Здесь ты можешь забронировать места или отменить бронь на концерт *"День Первокурсника"* Института Физики КФУ.\n\n📍Большой зал, КСК УНИКС\n🕓 17:00 10.10.2025`, { parse_mode: "Markdown" });
+        await bot.sendMessage(chatId, `Здесь ты можешь забронировать места или отменить бронь на концерт *"Студенческая весна"* Института Физики КФУ.\n\n📍Большой зал, КСК УНИКС\n🕓 13.03.2026 17:00`, { parse_mode: "Markdown" });
         await bot.sendMessage(chatId, 'Чтобы продолжить, введи, пожалуйста, свои *Фамилию Имя*', { parse_mode: "Markdown" });
         await bot.sendSticker(chatId, 'https://cdn2.combot.org/siba_oscar/webp/3xf09f98a0.webp');
     } else if (text && text.split(' ').length === 2) {
