@@ -47,7 +47,7 @@ async function handleCallback(query, bot) {
         user.selectedSeats.push(`Секция ${sectionId}, Ряд ${rowNum}, Место ${seatNum}`);
 
         await bot.editMessageReplyMarkup(getSeatsKeyboard(sectionId, user), { chat_id: chatId, message_id: messageId });
-        await bot.sendMessage(chatId, `Ты забронировал(а) ряд ${rowNum}, место ${seatNum} ✅`);
+        await bot.sendMessage(chatId, `Ты выбрал(а) ряд ${rowNum}, место ${seatNum} ✅\n\n⚠️ ВНИМАНИЕ!!! ⚠️\nНажми кнопку "Завершить бронирование", чтобы сохранить места!`);
         return;
     }
 
