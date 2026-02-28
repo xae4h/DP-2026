@@ -1,4 +1,4 @@
-# 🎟 Telegram Bot для бронирования мест (https://t.me/DP_IF_bot)
+# 🎟 Telegram Bot для бронирования мест (https://t.me/Concert_IF_bot)
 
 Этот бот создан для бронирования мест в зале на концерт **«День Первокурсника»**.  
 Он позволяет студентам выбирать места в зале, отменять бронь и получать билеты в удобное время.
@@ -175,6 +175,8 @@ sudo apt remove libnode-dev
 sudo dpkg --configure -a
 sudo apt install -f
 sudo apt install nodejs
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt install -y nodejs
 ```
 
 На все вопросы в терминале жми Yes/Ok/Enter
