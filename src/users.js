@@ -1,5 +1,4 @@
-// src/users.js
-const users = {};
+﻿const users = {};
 
 function getUser(chatId) {
     if (!users[chatId]) {
@@ -8,7 +7,8 @@ function getUser(chatId) {
             name: '',
             selectedSeats: [],
             pickupOption: null,
-            lastSchemeMsgId: null
+            lastSchemeMsgId: null,
+            restoreMode: false
         };
     }
     return users[chatId];

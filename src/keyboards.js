@@ -1,13 +1,40 @@
-// src/keyboards.js
-const { hall } = require('./hall');
+﻿const { hall } = require('./hall');
 
 function getActionKeyboard() {
     return {
         inline_keyboard: [
             [{ text: '🎟 Все мои билеты', callback_data: 'all_tickets' }],
             [{ text: '❌ Отменить бронь', callback_data: 'cancel_tickets' }],
-            [{ text: '➕ Забронировать ещё', callback_data: 'book_more' }]
+            [{ text: '➡ Забронировать ещё', callback_data: 'book_more' }]
         ]
+    };
+}
+
+function getAllTicketsKeyboard() {
+    return {
+        inline_keyboard: [
+            [{ text: '🎟 Все мои билеты', callback_data: 'all_tickets' }],
+            [{ text: '♻️ Восстановить бронь', callback_data: 'restore_booking' }],
+            [{ text: '❌ Отменить бронь', callback_data: 'cancel_tickets' }],
+            [{ text: '➡ Забронировать ещё', callback_data: 'book_more' }]
+        ]
+    };
+}
+
+function getRestoreKeyboard() {
+    return {
+        inline_keyboard: [
+            [{ text: '⬅️ Назад', callback_data: 'restore_back' }]
+        ]
+    };
+}
+
+function getLimitKeyboard() {
+    return {
+        inline_keyboard: [[
+            { text: '🎟 Билеты', callback_data: 'all_tickets' },
+            { text: '❌ Сдать', callback_data: 'cancel_tickets' }
+        ]]
     };
 }
 
@@ -31,10 +58,13 @@ function getSeatsKeyboard(sectionId, user) {
     const keyboard = [];
 
     for (const rowNum in section.rows) {
-        const rowButtons = [{ text: `р${rowNum}`, callback_data: "noop" }];
-        section.rows[rowNum].forEach(seat => {
+        const rowButtons = [{ text: `р${rowNum}`, callback_data: 'noop' }];
+        section.rows[rowNum].forEach((seat) => {
             let status = seat.status;
-            if (user.selectedSeats.includes(`Ряд ${rowNum}, Место ${seat.number}`) || user.selectedSeats.includes(`Секция ${sectionId}, Ряд ${rowNum}, Место ${seat.number}`)) {
+            if (
+                user.selectedSeats.includes(`Ряд ${rowNum}, Место ${seat.number}`) ||
+                user.selectedSeats.includes(`Секция ${sectionId}, Ряд ${rowNum}, Место ${seat.number}`)
+            ) {
                 status = '❌';
             }
             rowButtons.push({
@@ -45,13 +75,16 @@ function getSeatsKeyboard(sectionId, user) {
         keyboard.push(rowButtons);
     }
 
-    keyboard.push([{ text: "⬅️ Вернуться к выбору секции", callback_data: "back_to_sections" }]);
-    keyboard.push([{ text: "✅ Завершить бронирование", callback_data: "finish_booking" }]);
+    keyboard.push([{ text: '⬅️ Вернуться к выбору секции', callback_data: 'back_to_sections' }]);
+    keyboard.push([{ text: '✅ Завершить бронирование', callback_data: 'finish_booking' }]);
     return { inline_keyboard: keyboard };
 }
 
 module.exports = {
     getActionKeyboard,
+    getAllTicketsKeyboard,
+    getLimitKeyboard,
+    getRestoreKeyboard,
     getCancelKeyboard,
     getPickupKeyboard,
     getSeatsKeyboard
