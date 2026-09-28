@@ -80,7 +80,7 @@ async function handleMessage(msg, bot) {
     if (text === '/start') {
         user.restoreMode = false;
         await bot.sendSticker(chatId, 'https://cdn2.combot.org/siba_oscar/webp/0xf09f918b.webp');
-        await bot.sendMessage(chatId, `Здесь ты можешь забронировать места или отменить бронь на концерт *"Студенческая весна"* Института Физики КФУ.\n\n📌Большой зал, КСК УНИКС\n🕓 13.03.2026 17:00`, { parse_mode: 'Markdown' });
+        await bot.sendMessage(chatId, `Здесь ты можешь забронировать места или отменить бронь на концерт *"День Первокурсника"* Института Физики КФУ.\n\n📌Большой зал, КСК УНИКС\n🕓 14.10.2026 17:00`, { parse_mode: 'Markdown' });
         await bot.sendMessage(chatId, 'Чтобы продолжить, введи, пожалуйста, свои *Фамилию Имя*', { parse_mode: 'Markdown' });
         await bot.sendSticker(chatId, 'https://cdn2.combot.org/siba_oscar/webp/3xf09f98a0.webp');
         return;
