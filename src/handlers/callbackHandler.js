@@ -145,7 +145,6 @@ async function handleCallback(query, bot) {
         applyStateToUser(user, await getUserState(chatId));
 
         await safeEditReplyMarkup(bot, chatId, messageId, { inline_keyboard: [] });
-        await bot.sendSticker(chatId, 'https://cdn2.combot.org/siba_oscar/webp/62xf09fa4a9.webp');
         await bot.sendMessage(chatId, `Заберешь билеты здесь:\n${option}`);
         await bot.sendMessage(chatId, 'Что хочешь сделать дальше?', { reply_markup: getAllTicketsKeyboard() });
         return;
@@ -161,7 +160,6 @@ async function handleCallback(query, bot) {
             const sortedSeats = sortSeatStringsByRow(user.selectedSeats);
             const seatsList = sortedSeats.map((seatText) => seatText.replace(/Секция \d+, /, '')).join('\n');
             const pickup = user.pickupOption ? `\n\nМесто получения: \n${user.pickupOption}` : '';
-            await bot.sendSticker(chatId, 'https://cdn2.combot.org/siba_oscar/webp/25xf09f9898.webp');
             await bot.sendMessage(chatId, `Все твои билеты:\n\n${seatsList}${pickup}`);
         }
         await bot.sendMessage(chatId, 'Что хочешь сделать дальше?', { reply_markup: getAllTicketsKeyboard() });
@@ -197,7 +195,6 @@ async function handleCallback(query, bot) {
         }
 
         await safeEditReplyMarkup(bot, chatId, messageId, { inline_keyboard: [] });
-        await bot.sendSticker(chatId, 'https://cdn2.combot.org/siba_oscar/webp/31xf09f98a2.webp');
 
         user.selectedSeats = sortSeatStringsByRow(user.selectedSeats);
         await bot.sendMessage(chatId, 'Выбери места, которые хочешь освободить:', {
@@ -233,7 +230,6 @@ async function handleCallback(query, bot) {
             await safeEditReplyMarkup(bot, chatId, messageId, getCancelKeyboard(user));
         } else {
             await safeEditReplyMarkup(bot, chatId, messageId, { inline_keyboard: [] });
-            await bot.sendSticker(chatId, 'https://cdn2.combot.org/siba_oscar/webp/75xf09f988e.webp');
             await bot.sendMessage(chatId, 'Все билеты удалены.');
             await bot.sendMessage(chatId, 'Что хочешь сделать дальше?', { reply_markup: getActionKeyboard() });
         }
@@ -256,7 +252,6 @@ async function handleCallback(query, bot) {
             return;
         }
 
-        await bot.sendSticker(chatId, 'https://cdn2.combot.org/siba_oscar/webp/40xf09f988d.webp');
         await safeEditReplyMarkup(bot, chatId, messageId, { inline_keyboard: [] });
         await sendHallScheme(bot, chatId, getUser(chatId));
         return;
