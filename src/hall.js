@@ -48,6 +48,7 @@ const hall = {
             7: [{ number: 24, status: "✅" }, { number: 25, status: "✅" }, { number: 26, status: "✅" }, { number: 27, status: "✅" }],
             8: [{ number: 24, status: "✅" }, { number: 25, status: "✅" }, { number: 26, status: "✅" }, { number: 27, status: "✅" }],
             9: [{ number: 24, status: "✅" }, { number: 25, status: "✅" }, { number: 26, status: "✅" }, { number: 27, status: "✅" }],
+            10: [{ number: 24, status: "✅" }, { number: 25, status: "✅" }, { number: 26, status: "✅" }, { number: 27, status: "✅" }],
         }
     },
     5: {
@@ -60,6 +61,8 @@ const hall = {
             7: [{ number: 28, status: "✅" }, { number: 29, status: "✅" }, { number: 30, status: "✅" }, { number: 31, status: "✅" }],
             8: [{ number: 28, status: "✅" }, { number: 29, status: "✅" }, { number: 30, status: "✅" }, { number: 31, status: "✅" }],
             9: [{ number: 28, status: "✅" }, { number: 29, status: "✅" }, { number: 30, status: "✅" }, { number: 31, status: "✅" }],
+            10: [{ number: 28, status: "✅" }, { number: 29, status: "✅" }, { number: 30, status: "✅" }, { number: 31, status: "✅" }],
+        }
     },
     6: {
         name: "", rows: {
@@ -71,6 +74,7 @@ const hall = {
             7: [{ number: 32, status: "✅" }, { number: 33, status: "✅" }, { number: 34, status: "✅" }, { number: 35, status: "✅" }],
             8: [{ number: 32, status: "✅" }, { number: 33, status: "✅" }, { number: 34, status: "✅" }, { number: 35, status: "✅" }],
             9: [{ number: 32, status: "✅" }, { number: 33, status: "✅" }, { number: 34, status: "✅" }, { number: 35, status: "✅" }],
+            10: [{ number: 32, status: "✅" }, { number: 33, status: "✅" }, { number: 34, status: "✅" }, { number: 35, status: "✅" }],
         }
     },
     7: {
