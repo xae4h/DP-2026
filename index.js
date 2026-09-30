@@ -3,27 +3,24 @@ const bot = require('./src/bot');
 const { hall } = require('./src/hall');
 const messageHandler = require('./src/handlers/messageHandler');
 const callbackHandler = require('./src/handlers/callbackHandler');
-const { hydrateHallFromDb, initDb } = require('./src/db');
+const { hydrateHallFromDb, initDb, reserveSeat, BOOKED } = require('./src/db');
 
 function createDeduper(ttlMs = 120000) {
     const seen = new Map();
-
     return (key) => {
         const now = Date.now();
         const expiresAt = seen.get(key);
         if (expiresAt && expiresAt > now) return true;
-
         seen.set(key, now + ttlMs);
-
         if (seen.size > 5000) {
             for (const [k, exp] of seen.entries()) {
                 if (exp <= now) seen.delete(k);
             }
         }
-
         return false;
     };
 }
+
 
 async function reserveInitialSeats() {
     const seatsToReserve = [
@@ -48,7 +45,7 @@ async function reserveInitialSeats() {
         const result = await reserveSeat({
             chatId: 0,
             tgUserId: null,
-            username: 'Dekanat',
+            username: null,
             fullName: 'Забронировано',
             sectionId: seat.sectionId,
             rowNum: seat.rowNum,
@@ -76,38 +73,34 @@ async function reserveInitialSeats() {
     console.log(`Забронировано мест: ${reservedCount}, уже занято: ${alreadyBookedCount}`);
 }
 
-
 async function bootstrap() {
     await initDb();
-
     await hydrateHallFromDb(hall);
-    console.log('Bot starting...');
 
+    // Бронируем места 24-35 при запуске
+    await reserveInitialSeats();
+
+    console.log('Bot starting...');
     const isDuplicate = createDeduper();
 
     bot.on('polling_error', (err) => {
         console.error('Polling error:', err?.response?.body || err?.message || err);
     });
-
     bot.on('webhook_error', (err) => {
         console.error('Webhook error:', err?.response?.body || err?.message || err);
     });
-
     bot.on('message', async (msg) => {
         const messageKey = `m:${msg?.chat?.id}:${msg?.message_id}`;
         if (isDuplicate(messageKey)) return;
-
         try {
             await messageHandler.handleMessage(msg, bot);
         } catch (err) {
             console.error('Error in message handler:', err?.response?.body?.description || err?.message || err);
         }
     });
-
     bot.on('callback_query', async (query) => {
         const callbackKey = `c:${query?.id}`;
         if (isDuplicate(callbackKey)) return;
-
         try {
             await callbackHandler.handleCallback(query, bot);
         } catch (err) {
