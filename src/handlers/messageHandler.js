@@ -143,7 +143,6 @@ async function handleMessage(msg, bot) {
         await setUserName(chatId, tgUserId, user.name, username);
         applyStateToUser(user, await getUserState(chatId));
 
-        await bot.sendSticker(chatId, 'https://cdn2.combot.org/siba_oscar/webp/66xf09fa5b0.webp');
 
         if (user.selectedSeats.length >= 10) {
             await bot.sendMessage(chatId, '⚠️ У тебя уже выбрано 10 мест. Невозможно выбрать больше билетов.');
@@ -164,15 +163,6 @@ async function handleMessage(msg, bot) {
         return;
     }
 
-    let randStickerNumber = Math.floor(Math.random() * 10);
-    let neponLink = 'https://cdn2.combot.org/siba_oscar/webp/6xf09f97bf.webp';
-
-    if (randStickerNumber === 0 || randStickerNumber === 1) neponLink = 'https://cdn2.combot.org/siba_oscar/webp/100xf09f9984.webp';
-    if (randStickerNumber === 2 || randStickerNumber === 3) neponLink = 'https://cdn2.combot.org/siba_oscar/webp/83xf09fa494.webp';
-    if (randStickerNumber === 4 || randStickerNumber === 5) neponLink = 'https://cdn2.combot.org/siba_oscar/webp/48xf09f9982.webp';
-    if (randStickerNumber === 6 || randStickerNumber === 7) neponLink = 'https://cdn2.combot.org/siba_oscar/webp/47xf09fa4af.webp';
-
-    await bot.sendSticker(chatId, neponLink);
 
     if (user.name) {
         await bot.sendMessage(chatId, 'Что хочешь сделать дальше?', { reply_markup: getActionKeyboard() });
